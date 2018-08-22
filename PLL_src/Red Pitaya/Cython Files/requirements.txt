@@ -1,4 +1,0 @@
-pip install cython;
-pip install numpy;
-pip install argparse;
-pip install matplotlib;
