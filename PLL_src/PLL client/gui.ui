@@ -1,0 +1,506 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object class="tk.Toplevel" id="mainwindow">
+    <property name="height">200</property>
+    <property name="relief">raised</property>
+    <property name="resizable">both</property>
+    <property name="width">200</property>
+    <child>
+      <object class="ttk.Notebook" id="Notebook">
+        <property name="height">1500</property>
+        <property name="width">1500</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+        </layout>
+        <child>
+          <object class="ttk.Notebook.Tab" id="Sweeper_tab">
+            <property name="text" translatable="yes">Sweeper</property>
+            <child>
+              <object class="ttk.Frame" id="Sweeper_frame">
+                <property name="height">1500</property>
+                <property name="width">1500</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                  <property name="sticky">n</property>
+                  <rows>
+                    <row id="0">
+                      <property name="weight">0</property>
+                    </row>
+                  </rows>
+                  <columns>
+                    <column id="0">
+                      <property name="pad">0</property>
+                      <property name="weight">0</property>
+                    </column>
+                    <column id="1">
+                      <property name="weight">0</property>
+                    </column>
+                    <column id="2">
+                      <property name="weight">0</property>
+                    </column>
+                  </columns>
+                </layout>
+                <child>
+                  <object class="ttk.Entry" id="Freq_start">
+                    <property name="text" translatable="yes">Starting Frequency (Hz)</property>
+                    <property name="textvariable">string:freq_start</property>
+                    <property name="width">22</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">0</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Entry" id="Freq_end">
+                    <property name="text" translatable="yes">Ending Frequency (Hz)</property>
+                    <property name="textvariable">string:freq_end</property>
+                    <property name="width">22</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">1</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Entry" id="Freq_step">
+                    <property name="text" translatable="yes">Frequency Step Size (Hz)</property>
+                    <property name="textvariable">string:freq_step</property>
+                    <property name="width">22</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">2</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Entry" id="Volt_sweep">
+                    <property name="text" translatable="yes">Output Voltage (V)
+</property>
+                    <property name="textvariable">string:volt_sweep</property>
+                    <property name="width">22</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">3</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="tk.Canvas" id="Plot_Sweeper">
+                    <property name="background">#a0a0a0</property>
+                    <property name="cursor">based_arrow_down</property>
+                    <property name="height">750</property>
+                    <property name="insertofftime">200</property>
+                    <property name="insertontime">0</property>
+                    <property name="insertwidth">0</property>
+                    <property name="takefocus">false</property>
+                    <property name="width">750</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                      <property name="sticky">w</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Button" id="Start_Sweeper">
+                    <property name="command">on_sweeper_click</property>
+                    <property name="text" translatable="yes">
+Start
+</property>
+                    <property name="width">20</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Button" id="Stop_Sweep">
+                    <property name="command">on_sweep_stop</property>
+                    <property name="text" translatable="yes">
+Stop
+</property>
+                    <property name="width">20</property>
+                    <layout>
+                      <property name="column">2</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                      <property name="sticky">ne</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Checkbutton" id="plot_r">
+                    <property name="offvalue">False</property>
+                    <property name="onvalue">True</property>
+                    <property name="text" translatable="yes">Plot R</property>
+                    <property name="variable">boolean:plot_R_sweep</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">4</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Checkbutton" id="plot_p">
+                    <property name="offvalue">False</property>
+                    <property name="onvalue">True</property>
+                    <property name="text" translatable="yes">Plot Phase</property>
+                    <property name="variable">boolean:plot_p_sweep</property>
+                    <layout>
+                      <property name="column">0</property>
+                      <property name="propagate">True</property>
+                      <property name="row">5</property>
+                      <property name="sticky">nw</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Notebook.Tab" id="PLL_tab">
+            <property name="text" translatable="yes">PLL</property>
+            <child>
+              <object class="ttk.Panedwindow" id="PLL_window">
+                <property name="height">1500</property>
+                <property name="orient">horizontal</property>
+                <property name="width">1500</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="propagate">True</property>
+                  <property name="row">0</property>
+                </layout>
+                <child>
+                  <object class="ttk.Panedwindow.Pane" id="PLL_Pane">
+                    <property name="weight">1</property>
+                    <child>
+                      <object class="ttk.Frame" id="PLL_frame">
+                        <property name="height">750</property>
+                        <property name="relief">raised</property>
+                        <property name="width">200</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                        </layout>
+                        <child>
+                          <object class="ttk.Entry" id="Id">
+                            <property name="takefocus">true</property>
+                            <property name="text" translatable="yes">File Name Suffix
+</property>
+                            <property name="textvariable">string:ids</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">0</property>
+                              <property name="sticky">w</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Entry" id="f0">
+                            <property name="cursor">bottom_tee</property>
+                            <property name="takefocus">true</property>
+                            <property name="text" translatable="yes">Starting Frequency (Hz)
+</property>
+                            <property name="textvariable">string:f0</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">1</property>
+                              <property name="sticky">w</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Entry" id="SetPoint">
+                            <property name="text" translatable="yes">Set Point
+</property>
+                            <property name="textvariable">string:set_point</property>
+                            <property name="validate">focus</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">2</property>
+                              <property name="sticky">w</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Entry" id="kp">
+                            <property name="cursor">based_arrow_down</property>
+                            <property name="exportselection">false</property>
+                            <property name="text" translatable="yes">Kp</property>
+                            <property name="textvariable">string:kp</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">3</property>
+                              <property name="sticky">w</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Entry" id="ki">
+                            <property name="text" translatable="yes">Ki</property>
+                            <property name="textvariable">string:ki</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">4</property>
+                              <property name="sticky">w</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Entry" id="Volt_PLL">
+                            <property name="text" translatable="yes">Output Voltage</property>
+                            <property name="textvariable">string:volt_PLL</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">6</property>
+                              <property name="sticky">w</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="tk.Canvas" id="Plot_PLL">
+                            <property name="background">#a0a0a0</property>
+                            <property name="closeenough">0</property>
+                            <property name="cursor">based_arrow_down</property>
+                            <property name="height">850</property>
+                            <property name="insertofftime">0</property>
+                            <property name="insertontime">0</property>
+                            <property name="insertwidth">0</property>
+                            <property name="takefocus">true</property>
+                            <property name="width">850</property>
+                            <layout>
+                              <property name="column">2</property>
+                              <property name="propagate">True</property>
+                              <property name="row">8</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Button" id="PLL_Start">
+                            <property name="command">PLL_start</property>
+                            <property name="text" translatable="yes">
+Start
+</property>
+                            <property name="width">20</property>
+                            <layout>
+                              <property name="column">2</property>
+                              <property name="propagate">True</property>
+                              <property name="row">7</property>
+                              <property name="sticky">nw</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Button" id="PLL_Stop">
+                            <property name="command">PLL_stop</property>
+                            <property name="text" translatable="yes">
+Stop
+</property>
+                            <property name="width">20</property>
+                            <layout>
+                              <property name="column">2</property>
+                              <property name="propagate">True</property>
+                              <property name="row">7</property>
+                              <property name="sticky">ne</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Checkbutton" id="plot_p_pll">
+                            <property name="offvalue">False</property>
+                            <property name="onvalue">True</property>
+                            <property name="text" translatable="yes">Plot Phase</property>
+                            <property name="variable">boolean:plot_p_pll</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">7</property>
+                              <property name="sticky">w</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Checkbutton" id="plot_f_pll">
+                            <property name="offvalue">False</property>
+                            <property name="onvalue">True</property>
+                            <property name="text" translatable="yes">Plot Frequency</property>
+                            <property name="variable">boolean:plot_f_pll</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">8</property>
+                              <property name="sticky">nw</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Entry" id="time">
+                            <property name="text" translatable="yes">Maximum Time (sec)</property>
+                            <property name="textvariable">string:time</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">7</property>
+                              <property name="sticky">nw</property>
+                            </layout>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Panedwindow.Pane" id="Advisor_pane">
+                    <property name="weight">1</property>
+                    <child>
+                      <object class="ttk.Frame" id="Advisor_frame">
+                        <property name="borderwidth">10</property>
+                        <property name="height">750</property>
+                        <property name="relief">raised</property>
+                        <property name="width">100</property>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="propagate">True</property>
+                          <property name="row">0</property>
+                          <rows>
+                            <row id="3">
+                              <property name="pad">0</property>
+                            </row>
+                          </rows>
+                        </layout>
+                        <child>
+                          <object class="ttk.Entry" id="fres">
+                            <property name="exportselection">false</property>
+                            <property name="text" translatable="yes">Resonance Frequency (Hz)</property>
+                            <property name="textvariable">double:f_res</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">0</property>
+                              <property name="sticky">nw</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Entry" id="Q">
+                            <property name="text" translatable="yes">Quality Factor</property>
+                            <property name="textvariable">double:Q</property>
+                            <property name="width">22</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">1</property>
+                              <property name="sticky">nw</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="tk.Text" id="constants">
+                            <property name="background">#a0a0a0</property>
+                            <property name="cursor">based_arrow_up</property>
+                            <property name="height">30</property>
+                            <property name="padx">0</property>
+                            <property name="width">30</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">10</property>
+                              <property name="sticky">e</property>
+                            </layout>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="ttk.Button" id="Advisor_Start">
+                            <property name="command">on_advisor_click</property>
+                            <property name="text" translatable="yes">Advise</property>
+                            <layout>
+                              <property name="column">0</property>
+                              <property name="propagate">True</property>
+                              <property name="row">3</property>
+                              <property name="sticky">ne</property>
+                            </layout>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Entry" id="ip_entry">
+        <property name="text" translatable="yes">IP address</property>
+        <property name="textvariable">string:IP</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">n</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="Connect">
+        <property name="command">on_connect_click</property>
+        <property name="text" translatable="yes">Connect</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">ne</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="Quit">
+        <property name="command">on_quit_click</property>
+        <property name="text" translatable="yes">Quit</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">ne</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>

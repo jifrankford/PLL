@@ -1,0 +1,3 @@
+Use this command to properly compile python script to a single executable file
+
+pyinstaller --windowed --hidden-import pygubu.builder.ttkstdwidgets gui.py
